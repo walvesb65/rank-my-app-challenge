@@ -17,7 +17,7 @@ const AppList = ({ apps }: Props) => {
           title={app.name}
           hoverable
           className="cursor-pointer"
-          onClick={() => navigate(`/app/${app.id}`)}
+          onClick={() => navigate(`/details/${app.id}`)}
         >
           <p>
             <strong>Categoria:</strong> {app.category}
