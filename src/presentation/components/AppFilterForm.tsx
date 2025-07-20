@@ -25,7 +25,7 @@ export const AppFilterForm = () => {
     <Form
       layout="vertical"
       onFinish={handleSubmit}
-      className="p-4 border rounded mb-6 bg-white shadow-sm"
+      className="p-4 border rounded mb-6 bg-white shadow-sm sticky top-16 z-10"
     >
       <Space wrap size="middle">
         <Form.Item label="Nome">

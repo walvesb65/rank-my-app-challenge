@@ -1,25 +1,14 @@
-import { Layout, Typography } from "antd";
+import { Layout } from "antd";
 import { Outlet } from "react-router-dom";
+import AppHeader from "../Header";
 
-const { Header, Content } = Layout;
+const { Content } = Layout;
 
 const AppLayout = () => {
   return (
-    <Layout style={{ minHeight: "100vh" }}>
-      <Header
-        style={{
-          background: "#001529",
-          padding: "0 24px",
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <Typography.Title level={3} style={{ color: "#fff", margin: 0 }}>
-          RankMyApp
-        </Typography.Title>
-      </Header>
-
-      <Content style={{ padding: "24px" }}>
+    <Layout className="min-h-screen">
+      <AppHeader />
+      <Content className="p-6 bg-gray-50">
         <Outlet />
       </Content>
     </Layout>
