@@ -1,47 +1,65 @@
 import type { App } from "@/core/entities/App";
-import { Card, Typography, Tag } from "antd";
-import { Link } from "react-router-dom";
+import { Card, Tag, Typography, Button, Space } from "antd";
+import { useNavigate } from "react-router-dom";
+import { LinkOutlined } from "@ant-design/icons";
 
-const { Title, Text } = Typography;
-
-type Props = {
+interface Props {
   app: App;
-};
+}
 
 export const AppCard = ({ app }: Props) => {
-  const platformColor = app.platform === "Android" ? "green" : "blue";
+  const navigate = useNavigate();
+
+  const platformColor = app.platform === "iOS" ? "blue" : "green";
 
   return (
     <Card
-      hoverable
-      className="w-full shadow-sm transition-all"
-      title={<Title level={5}>{app.name}</Title>}
-      extra={<Link to={`/details/${app.id}`}>Detalhes</Link>}
-    >
-      <Text>
-        <strong>Categoria:</strong> {app.category}
-      </Text>
-      <br />
-      <Text>
-        <strong>Plataforma:</strong>{" "}
-        <Tag color={platformColor} className="capitalize">
-          {app.platform}
-        </Tag>
-      </Text>
-      <br />
-      <Text>
-        <strong>URL:</strong>{" "}
-        <a
-          href={app.url}
-          target="_blank"
-          rel="noreferrer"
-          className="text-blue-500 underline break-all"
+      title={
+        <Typography.Title level={5} ellipsis style={{ marginBottom: 0 }}>
+          {app.name}
+        </Typography.Title>
+      }
+      extra={
+        <Button
+          type="link"
+          size="small"
+          onClick={() => navigate(`/details/${app.id}`)}
         >
-          {app.url}
-        </a>
-      </Text>
+          Detalhes
+        </Button>
+      }
+      style={{ height: "100%" }}
+      hoverable
+    >
+      <Space direction="vertical" size="small" style={{ width: "100%" }}>
+        <div>
+          <Typography.Text type="secondary">Categoria:</Typography.Text>{" "}
+          <Typography.Text>{app.category}</Typography.Text>
+        </div>
+
+        <div>
+          <Typography.Text type="secondary">Plataforma:</Typography.Text>{" "}
+          <Tag color={platformColor}>{app.platform}</Tag>
+        </div>
+
+        <div>
+          <Typography.Text type="secondary">URL:</Typography.Text>{" "}
+          <Typography.Link
+            href={app.url}
+            target="_blank"
+            rel="noreferrer"
+            ellipsis
+            style={{
+              maxWidth: "150px",
+              display: "inline-block",
+              verticalAlign: "middle",
+            }}
+          >
+            <LinkOutlined />
+            {app.url}
+          </Typography.Link>
+        </div>
+      </Space>
     </Card>
   );
 };
-
-export default AppCard;
