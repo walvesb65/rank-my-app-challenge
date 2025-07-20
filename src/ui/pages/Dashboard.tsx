@@ -25,7 +25,9 @@ const Dashboard = () => {
           ) : apps.length === 0 ? (
             <EmptyState message="Nenhum aplicativo encontrado." />
           ) : (
-            <AppList apps={apps} />
+            <div className="h-[calc(100vh-290px)] overflow-y-auto pr-2 space-y-4">
+              <AppList apps={apps} />
+            </div>
           )}
         </Col>
       </Row>
