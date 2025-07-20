@@ -2,26 +2,32 @@ import { useAppList } from "@/ui/hooks/useAppList";
 import { AppForm } from "@/presentation/components/AppForm";
 import AppList from "@/presentation/components/AppList";
 import { AppFilterForm } from "@/presentation/components/AppFilterForm";
+import { Card, Col, Row, Typography } from "antd";
 
 const Dashboard = () => {
   const { apps, loading, reload } = useAppList();
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
-      <h2 className="text-2xl font-bold">Cadastrar Aplicativo</h2>
-      <AppForm onAppCreated={reload} />
-
-      <h2 className="text-2xl font-bold">Filtrar Aplicativos</h2>
+    <div className="max-w-7xl mx-auto space-y-6">
       <AppFilterForm />
 
-      <h2 className="text-2xl font-bold">Aplicativos Cadastrados</h2>
-      {loading ? (
-        <p className="text-gray-500">Carregando apps...</p>
-      ) : apps.length === 0 ? (
-        <p className="text-gray-400">Nenhum aplicativo encontrado.</p>
-      ) : (
-        <AppList apps={apps} />
-      )}
+      <Row gutter={[24, 24]} align="stretch">
+        <Col xs={24} md={8}>
+          <Card title="Cadastrar Aplicativo" bordered>
+            <AppForm onAppCreated={reload} />
+          </Card>
+        </Col>
+        <Col xs={24} md={16}>
+          <Typography.Title level={4}>Aplicativos Cadastrados</Typography.Title>
+          {loading ? (
+            <p>Carregando apps...</p>
+          ) : apps.length === 0 ? (
+            <p className="text-gray-400">Nenhum aplicativo encontrado.</p>
+          ) : (
+            <AppList apps={apps} />
+          )}
+        </Col>
+      </Row>
     </div>
   );
 };
