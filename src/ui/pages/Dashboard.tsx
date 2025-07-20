@@ -1,7 +1,7 @@
 import { useAppList } from "@/ui/hooks/useAppList";
 import { AppForm } from "@/presentation/components/AppForm";
 import AppList from "@/presentation/components/AppList";
-import AppFilterForm from "@/presentation/components/AppFilterForm";
+import { AppFilterForm } from "@/presentation/components/AppFilterForm";
 
 const Dashboard = () => {
   const { apps, loading, reload } = useAppList();
