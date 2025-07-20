@@ -1,6 +1,7 @@
 import { useAppList } from "@/ui/hooks/useAppList";
 import { AppForm } from "@/presentation/components/AppForm";
 import AppList from "@/presentation/components/AppList";
+import AppFilterForm from "@/presentation/components/AppFilterForm";
 import { Typography, Divider } from "antd";
 
 const Dashboard = () => {
@@ -14,6 +15,8 @@ const Dashboard = () => {
       <Divider />
 
       <Typography.Title level={3}>Aplicativos Cadastrados</Typography.Title>
+
+      <AppFilterForm />
 
       {loading ? (
         <p>Carregando aplicativos...</p>
