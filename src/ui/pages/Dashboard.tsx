@@ -18,7 +18,7 @@ const Dashboard = () => {
       {loading ? (
         <p>Carregando aplicativos...</p>
       ) : apps.length === 0 ? (
-        <p>Nenhu app encontrado</p>
+        <p>Nenhum app encontrado.</p>
       ) : (
         <AppList apps={apps} />
       )}
