@@ -1,18 +1,15 @@
-import { Layout } from "antd";
 import { Outlet } from "react-router-dom";
-import AppHeader from "../Header";
+import Header from "../Header";
 
-const { Content } = Layout;
-
-const AppLayout = () => {
+const Layout = () => {
   return (
-    <Layout className="min-h-screen">
-      <AppHeader />
-      <Content className="p-6 bg-gray-50">
+    <div className="min-h-screen bg-gray-50">
+      <Header />
+      <main className="px-4 md:px-6 pt-24 pb-10">
         <Outlet />
-      </Content>
-    </Layout>
+      </main>
+    </div>
   );
 };
 
-export default AppLayout;
+export default Layout;
