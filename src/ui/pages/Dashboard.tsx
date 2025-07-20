@@ -3,6 +3,7 @@ import { AppForm } from "@/presentation/components/AppForm";
 import AppList from "@/presentation/components/AppList";
 import { AppFilterForm } from "@/presentation/components/AppFilterForm";
 import { Card, Col, Row, Typography } from "antd";
+import { EmptyState } from "../components/EmptyState";
 
 const Dashboard = () => {
   const { apps, loading, reload } = useAppList();
@@ -22,7 +23,7 @@ const Dashboard = () => {
           {loading ? (
             <p>Carregando apps...</p>
           ) : apps.length === 0 ? (
-            <p className="text-gray-400">Nenhum aplicativo encontrado.</p>
+            <EmptyState message="Nenhum aplicativo encontrado." />
           ) : (
             <AppList apps={apps} />
           )}
