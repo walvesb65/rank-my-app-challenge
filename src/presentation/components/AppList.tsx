@@ -1,34 +1,45 @@
 import type { App } from "@/core/entities/App";
-import { Card, List, Typography } from "antd";
-import { Link } from "react-router-dom";
+import { Card } from "antd";
+import { useNavigate } from "react-router-dom";
 
-interface Props {
+type Props = {
   apps: App[];
-}
-
-const { Text } = Typography;
+};
 
 const AppList = ({ apps }: Props) => {
+  const navigate = useNavigate();
+
   return (
-    <List
-      grid={{ gutter: 16, column: 1 }}
-      dataSource={apps}
-      renderItem={(app) => (
-        <List.Item>
-          <Card
-            title={app.name}
-            extra={<Link to={`/app/${app.id}`}>Detalhes</Link>}
-          >
-            <Text type="secondary">Categoria:</Text> {app.category} <br />
-            <Text type="secondary">Plataforma:</Text> {app.platform} <br />
-            <Text type="secondary">URL:</Text>{" "}
-            <a href={app.url} target="_blank" rel="noreferrer">
+    <div className="grid gap-4 sm:grid-cols-2">
+      {apps.map((app) => (
+        <Card
+          key={app.id}
+          title={app.name}
+          hoverable
+          className="cursor-pointer"
+          onClick={() => navigate(`/app/${app.id}`)}
+        >
+          <p>
+            <strong>Categoria:</strong> {app.category}
+          </p>
+          <p>
+            <strong>Plataforma:</strong> {app.platform}
+          </p>
+          <p>
+            <strong>URL:</strong>{" "}
+            <a
+              href={app.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 underline"
+              onClick={(e) => e.stopPropagation()}
+            >
               {app.url}
             </a>
-          </Card>
-        </List.Item>
-      )}
-    />
+          </p>
+        </Card>
+      ))}
+    </div>
   );
 };
 
