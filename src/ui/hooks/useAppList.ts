@@ -1,24 +1,40 @@
-import { useEffect, useState, useCallback } from "react";
-import { FindAllAppsUseCase } from "@/core/useCases/findAllApps";
-import { LocalAppRepository } from "@/infrastructure/repositories/LocalAppRepository";
 import { useAppStore } from "./useAppStore";
+import { useEffect, useState } from "react";
+import type { App } from "@/core/entities/App";
 
 export const useAppList = () => {
+  const apps = useAppStore((s) => s.apps);
+  const filters = useAppStore((s) => s.filters);
+  const [filtered, setFiltered] = useState<App[]>(apps);
   const [loading, setLoading] = useState(false);
-  const { apps, setApps } = useAppStore();
-
-  const reload = useCallback(async () => {
-    setLoading(true);
-    const repo = new LocalAppRepository();
-    const useCase = new FindAllAppsUseCase(repo);
-    const result = await useCase.execute();
-    setApps(result);
-    setLoading(false);
-  }, [setApps]);
 
   useEffect(() => {
-    reload();
-  }, [reload]);
+    setLoading(true);
+    const timeout = setTimeout(() => {
+      const filteredApps = apps.filter((app) => {
+        const matchName = filters.name
+          ? app.name.toLowerCase().includes(filters.name.toLowerCase())
+          : true;
+        const matchCategory = filters.category
+          ? app.category === filters.category
+          : true;
+        const matchPlatform = filters.platform
+          ? app.platform === filters.platform
+          : true;
 
-  return { apps, loading, reload };
+        return matchName && matchCategory && matchPlatform;
+      });
+
+      setFiltered(filteredApps);
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timeout);
+  }, [apps, filters]);
+
+  const reload = () => {
+    setFiltered(apps);
+  };
+
+  return { apps: filtered, loading, reload };
 };
