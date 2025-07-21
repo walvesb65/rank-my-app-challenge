@@ -120,7 +120,7 @@ Oferece:
 1. **Clone o repositório**
 
 ```bash
-git clone https://github.com/seu-usuario/app-manager-rankmyapp.git
+git clone git@github.com:walvesb65/rank-my-app-challenge.git
 cd app-manager-rankmyapp
 ```
 
