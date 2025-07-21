@@ -1,7 +1,14 @@
 import type { App } from "@/core/entities/App";
-import { Card, Tag, Typography, Button, Space } from "antd";
+import { Card, Tag, Typography, Button, Space, Dropdown, Menu } from "antd";
 import { useNavigate } from "react-router-dom";
-import { LinkOutlined } from "@ant-design/icons";
+import {
+  EllipsisOutlined,
+  LinkOutlined,
+  EditOutlined,
+  DeleteOutlined,
+  BarChartOutlined,
+} from "@ant-design/icons";
+import { useAppStore } from "@/ui/hooks/useAppStore";
 
 interface Props {
   app: App;
@@ -9,8 +16,32 @@ interface Props {
 
 export const AppCard = ({ app }: Props) => {
   const navigate = useNavigate();
+  const { removeApp } = useAppStore();
 
   const platformColor = app.platform === "iOS" ? "blue" : "green";
+
+  const handleEdit = () => navigate(`/edit/${app.id}`);
+
+  const handleDelete = async () => {
+    await removeApp(app.id);
+  };
+
+  const menu = (
+    <Menu>
+      <Menu.Item
+        icon={<BarChartOutlined />}
+        onClick={() => navigate(`/details/${app.id}`)}
+      >
+        Detalhes
+      </Menu.Item>
+      <Menu.Item icon={<EditOutlined />} onClick={handleEdit}>
+        Editar
+      </Menu.Item>
+      <Menu.Item icon={<DeleteOutlined />} danger onClick={handleDelete}>
+        Deletar
+      </Menu.Item>
+    </Menu>
+  );
 
   return (
     <Card
@@ -20,13 +51,9 @@ export const AppCard = ({ app }: Props) => {
         </Typography.Title>
       }
       extra={
-        <Button
-          type="link"
-          size="small"
-          onClick={() => navigate(`/details/${app.id}`)}
-        >
-          Detalhes
-        </Button>
+        <Dropdown overlay={menu} trigger={["click"]}>
+          <Button type="text" icon={<EllipsisOutlined />} />
+        </Dropdown>
       }
       style={{ height: "100%" }}
       hoverable

@@ -1,4 +1,3 @@
-// src/ui/components/Header.tsx
 import { Layout, Typography } from "antd";
 import { AppstoreOutlined } from "@ant-design/icons";
 
