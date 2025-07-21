@@ -1,3 +1,4 @@
+// src/ui/pages/Details.tsx
 import { useParams, useNavigate } from "react-router-dom";
 import { useAppStore } from "@/ui/hooks/useAppStore";
 import { useEffect, useState } from "react";
@@ -10,13 +11,14 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { Typography, Button } from "antd";
+import { Typography, Card, Button, Space, Tag, Divider } from "antd";
 
 const Details = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const apps = useAppStore((s) => s.apps);
   const [app, setApp] = useState<App | null>(null);
+  // const screens = Grid.useBreakpoint();
 
   useEffect(() => {
     const load = async () => {
@@ -38,39 +40,61 @@ const Details = () => {
   if (!app) return null;
 
   return (
-    <div className="max-w-3xl mx-auto p-4 space-y-4">
-      <Typography.Title level={3}>{app.name}</Typography.Title>
-      <p className="text-gray-600">
-        {app.category} • {app.platform}
-      </p>
-      <p>
-        URL:{" "}
-        <a
-          href={app.url}
-          className="text-blue-500 underline"
-          target="_blank"
-          rel="noreferrer"
-        >
-          {app.url}
-        </a>
-      </p>
+    <div className="max-w-4xl mx-auto px-4 pt-6 pb-10">
+      <Button onClick={() => navigate("/")} type="default">
+        Voltar
+      </Button>
+      <Card bordered className="shadow-sm">
+        <Space direction="vertical" size="middle" className="w-full">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
+            <Typography.Title level={3} className="!mb-0">
+              {app.name}
+            </Typography.Title>
+          </div>
 
-      <Typography.Title level={4}>Downloads (mock)</Typography.Title>
-      <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={mockMetrics}>
-          <XAxis dataKey="date" />
-          <YAxis />
-          <Tooltip />
-          <Line
-            type="monotone"
-            dataKey="downloads"
-            stroke="#3b82f6"
-            strokeWidth={2}
-          />
-        </LineChart>
-      </ResponsiveContainer>
+          <div className="space-y-1">
+            <Typography.Text type="secondary">
+              Categoria: {app.category}
+            </Typography.Text>
+            <br />
+            <Typography.Text>
+              Plataforma:{" "}
+              <Tag
+                color={app.platform === "Android" ? "green" : "blue"}
+                style={{ fontWeight: "bold" }}
+              >
+                {app.platform}
+              </Tag>
+            </Typography.Text>
+            <br />
+            <a href={app.url} target="_blank" rel="noreferrer">
+              URL:{" "}
+              <Typography.Text style={{ color: "#1677ff" }} copyable>
+                {app.url.length > 40
+                  ? `${app.url.substring(0, 40)}...`
+                  : app.url}
+              </Typography.Text>
+            </a>
+          </div>
 
-      <Button onClick={() => navigate("/")}>Voltar</Button>
+          <Divider />
+
+          <Typography.Title level={4}>Downloads simulados</Typography.Title>
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={mockMetrics}>
+              <XAxis dataKey="date" />
+              <YAxis />
+              <Tooltip />
+              <Line
+                type="monotone"
+                dataKey="downloads"
+                stroke="#3b82f6"
+                strokeWidth={2}
+              />
+            </LineChart>
+          </ResponsiveContainer>
+        </Space>
+      </Card>
     </div>
   );
 };
