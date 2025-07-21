@@ -8,7 +8,7 @@ const AppHeader = () => {
       <div className="flex items-center gap-2">
         <a href="/">
           <img
-            src="src/assets/Logo-RankMyApp.svg"
+            src="public/Logo-RankMyApp.svg"
             className=" h-8"
             alt="logo RankMyApp"
           />
