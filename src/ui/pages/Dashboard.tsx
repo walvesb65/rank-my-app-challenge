@@ -7,7 +7,6 @@ import { EmptyState } from "../components/EmptyState";
 
 const Dashboard = () => {
   const { apps, loading, reload } = useAppList();
-  const { Panel } = Collapse;
   const { useBreakpoint } = Grid;
   const screens = useBreakpoint();
 
@@ -18,27 +17,31 @@ const Dashboard = () => {
       <Row gutter={screens.md ? [16, 16] : [0, 0]} align="stretch">
         <Col xs={24} md={8}>
           {screens.md ? (
-            <Card title="Cadastrar Aplicativo" bordered>
+            <Card title="Cadastrar Aplicativo">
               <AppForm onAppCreated={reload} />
             </Card>
           ) : (
-            <Collapse>
-              <Panel
-                key="1"
-                style={{ backgroundColor: "white" }}
-                header={
-                  <Typography.Title
-                    level={5}
-                    ellipsis
-                    style={{ marginBottom: 0 }}
-                  >
-                    Cadastrar Aplicativo
-                  </Typography.Title>
-                }
-              >
-                <AppForm onAppCreated={reload} />
-              </Panel>
-            </Collapse>
+            <Collapse
+              items={[
+                {
+                  key: "1",
+                  label: (
+                    <Typography.Title
+                      level={5}
+                      ellipsis
+                      style={{ marginBottom: 0 }}
+                    >
+                      Cadastrar Aplicativo
+                    </Typography.Title>
+                  ),
+                  children: (
+                    <div className="bg-white">
+                      <AppForm onAppCreated={reload} />
+                    </div>
+                  ),
+                },
+              ]}
+            />
           )}
         </Col>
 

@@ -1,5 +1,5 @@
 import type { App } from "@/core/entities/App";
-import { Card, Tag, Typography, Button, Space, Dropdown, Menu } from "antd";
+import { Card, Tag, Typography, Button, Space, Dropdown } from "antd";
 import { useNavigate } from "react-router-dom";
 import {
   EllipsisOutlined,
@@ -21,27 +21,30 @@ export const AppCard = ({ app }: Props) => {
   const platformColor = app.platform === "iOS" ? "blue" : "green";
 
   const handleEdit = () => navigate(`/edit/${app.id}`);
+  const handleDelete = async () => await removeApp(app.id);
+  const handleDetails = () => navigate(`/details/${app.id}`);
 
-  const handleDelete = async () => {
-    await removeApp(app.id);
-  };
-
-  const menu = (
-    <Menu>
-      <Menu.Item
-        icon={<BarChartOutlined />}
-        onClick={() => navigate(`/details/${app.id}`)}
-      >
-        Detalhes
-      </Menu.Item>
-      <Menu.Item icon={<EditOutlined />} onClick={handleEdit}>
-        Editar
-      </Menu.Item>
-      <Menu.Item icon={<DeleteOutlined />} danger onClick={handleDelete}>
-        Deletar
-      </Menu.Item>
-    </Menu>
-  );
+  const dropdownItems = [
+    {
+      key: "details",
+      icon: <BarChartOutlined />,
+      label: "Detalhes",
+      onClick: handleDetails,
+    },
+    {
+      key: "edit",
+      icon: <EditOutlined />,
+      label: "Editar",
+      onClick: handleEdit,
+    },
+    {
+      key: "delete",
+      icon: <DeleteOutlined />,
+      label: <span style={{ color: "red" }}>Deletar</span>,
+      danger: true,
+      onClick: handleDelete,
+    },
+  ];
 
   return (
     <Card
@@ -51,7 +54,7 @@ export const AppCard = ({ app }: Props) => {
         </Typography.Title>
       }
       extra={
-        <Dropdown overlay={menu} trigger={["click"]}>
+        <Dropdown menu={{ items: dropdownItems }} trigger={["click"]}>
           <Button type="text" icon={<EllipsisOutlined />} />
         </Dropdown>
       }
@@ -82,8 +85,7 @@ export const AppCard = ({ app }: Props) => {
               verticalAlign: "middle",
             }}
           >
-            <LinkOutlined />
-            {app.url}
+            <LinkOutlined /> {app.url}
           </Typography.Link>
         </div>
       </Space>

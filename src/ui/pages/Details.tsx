@@ -40,7 +40,7 @@ const Details = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 pt-6 pb-10">
-      <Card bordered className="shadow-sm">
+      <Card variant="outlined" className="shadow-sm">
         <Space direction="vertical" size="middle" className="w-full">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-2">
             <Typography.Title level={3} className="!mb-0">
