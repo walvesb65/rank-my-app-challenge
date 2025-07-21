@@ -25,24 +25,25 @@ O objetivo do projeto é criar uma aplicação capaz de:
 
 ```bash
 src/
-├── core/                      # Camada de domínio (DDD)
-│   ├── entities/             # Entidades puras (ex: App.ts)
-│   ├── repositories/         # Interfaces de repositórios
-│   └── useCases/             # Casos de uso (Create, Update, Remove)
-│
-├── infrastructure/           # Implementações externas
-│   └── repositories/         # Ex: LocalAppRepository.ts
-│
-├── presentation/             # Camada de apresentação (UI)
-│   ├── components/           # Componentes reutilizáveis (AppForm, AppCard, etc.)
-│   └── pages/                # Páginas como Dashboard, Edit, Details
-│
-├── ui/                       # Hooks e UI State (Zustand)
-│   └── hooks/                # Ex: useAppStore.ts
-│
-├── App.tsx                   # Ponto de entrada da aplicação
-├── main.tsx                  # Setup do React + Router
-└── index.css                 # Estilos globais
+├── assets/ # Arquivos estáticos (imagens, ícones, etc.)
+├── core/ # Domínio da aplicação (DDD)
+│ ├── entities/ # Entidades de domínio
+│ ├── repositories/ # Interfaces dos repositórios
+│ ├── theme/ # Tema e design tokens
+│ └── useCases/ # Casos de uso (regras de negócio)
+├── infrastructure/ # Implementações técnicas (ex: APIs, armazenamento)
+│ └── repositories/ # Implementações dos repositórios definidos em core
+├── presentation/ # Camada de apresentação
+│ └── components/ # Componentes compartilhados
+├── shared/ # Utilitários e configurações globais
+│ ├── router/ # Rotas da aplicação
+│ └── styles/ # Estilos globais
+├── ui/ # Interface do usuário
+│ ├── components/ # Componentes visuais reutilizáveis
+│ ├── hooks/ # Hooks customizados
+│ └── pages/ # Páginas da aplicação
+├── App.tsx # Componente raiz da aplicação
+└── main.tsx # Ponto de entrada da aplicação
 ```
 
 ---
