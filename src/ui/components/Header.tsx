@@ -1,16 +1,18 @@
-import { Layout, Typography } from "antd";
-import { AppstoreOutlined } from "@ant-design/icons";
+import { Layout } from "antd";
 
 const { Header } = Layout;
 
 const AppHeader = () => {
   return (
-    <Header className="bg-white shadow-sm sticky top-0 z-50 px-6 flex items-center justify-between h-16">
+    <Header className="bg-[#1A88FF] shadow-sm sticky top-0 z-50 px-6 flex items-center justify-between h-16">
       <div className="flex items-center gap-2">
-        <AppstoreOutlined className="text-blue-500 text-xl" />
-        <Typography.Title level={4} className="!m-0">
-          RankMyApp
-        </Typography.Title>
+        <a href="/">
+          <img
+            src="src/assets/Logo-RankMyApp.svg"
+            className=" h-8"
+            alt="logo RankMyApp"
+          />
+        </a>
       </div>
     </Header>
   );
