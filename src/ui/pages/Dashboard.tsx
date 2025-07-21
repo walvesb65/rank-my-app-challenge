@@ -11,13 +11,15 @@ const Dashboard = () => {
   const screens = useBreakpoint();
 
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
-      <AppFilterForm />
+    <div className="max-w-7xl mx-auto px-4 pt-6 pb-10 space-y-8">
+      <div className=" pt-4 rounded">
+        <AppFilterForm />
+      </div>
 
-      <Row gutter={screens.md ? [16, 16] : [0, 0]} align="stretch">
+      <Row gutter={[24, 24]} align="stretch">
         <Col xs={24} md={8}>
           {screens.md ? (
-            <Card title="Cadastrar Aplicativo">
+            <Card title="Cadastrar Aplicativo" className="shadow-sm">
               <AppForm onAppCreated={reload} />
             </Card>
           ) : (
@@ -35,12 +37,13 @@ const Dashboard = () => {
                     </Typography.Title>
                   ),
                   children: (
-                    <div className="bg-white">
+                    <div className="bg-white p-4">
                       <AppForm onAppCreated={reload} />
                     </div>
                   ),
                 },
               ]}
+              className="bg-white rounded shadow-sm"
             />
           )}
         </Col>
@@ -49,7 +52,7 @@ const Dashboard = () => {
           <Typography.Title level={4}>Aplicativos Cadastrados</Typography.Title>
 
           {loading ? (
-            <div className="grid grid-cols-1 p-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {[...Array(screens.md ? 4 : 1)].map((_, i) => (
                 <Skeleton
                   key={i}
@@ -63,7 +66,7 @@ const Dashboard = () => {
           ) : apps.length === 0 ? (
             <EmptyState message="Nenhum aplicativo encontrado." />
           ) : (
-            <div className="h-[calc(100vh-290px)] p-2 overflow-y-auto pr-2 space-y-4">
+            <div className="p-2 space-y-4">
               <AppList apps={apps} />
             </div>
           )}
