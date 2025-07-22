@@ -92,31 +92,9 @@ src/
 
 ---
 
-## 🧠 Decisões Técnicas
-
-### 🧩 Arquitetura em Camadas (DDD)
-
-A separação entre `core`, `infrastructure`, `presentation` e `ui` permite:
-
-- Fácil testabilidade
-- Baixo acoplamento
-- Reutilização de código
-
-### ⚙️ Zustand
-
-Optamos por `zustand` para simplificar a gestão de estado global sem overhead de boilerplate.
-
-### 🧱 Ant Design
-
-Oferece:
-
-- Sistema de grid responsivo
-- Componentes ricos (inputs, selects, popconfirm, collapse, etc.)
-- Boa experiência visual por padrão
-
----
-
 ## 🧭 Como Rodar o Projeto
+
+### 🔧 Localmente (sem Docker)
 
 1. **Clone o repositório**
 
@@ -139,6 +117,45 @@ npm run dev
 
 ---
 
+## 🐳 Rodando com Docker
+
+Se preferir executar a aplicação isoladamente com Docker, siga os passos abaixo:
+
+### 1. **Pré-requisitos**
+
+- Docker instalado: [`https://www.docker.com`](https://www.docker.com)
+
+> Verifique:
+
+```bash
+docker -v
+docker compose version
+```
+
+### 2. **Build e execução**
+
+No diretório raiz do projeto, execute:
+
+```bash
+docker compose up --build -d
+```
+
+A aplicação ficará disponível em:
+
+```
+http://localhost:3000
+```
+
+### 3. **Parar containers**
+
+```bash
+docker compose down
+```
+
+> ℹ️ **Nota:** a Vercel não utiliza Docker para deploy, mas a configuração foi adicionada para facilitar testes locais e atender aos requisitos do desafio técnico.
+
+---
+
 ## 🛠️ Scripts Disponíveis
 
 | Comando   | Ação                                 |
@@ -154,7 +171,6 @@ npm run dev
 - [ ] Testes unitários com `Vitest` ou `Jest`
 - [ ] Paginação na listagem
 - [ ] Melhorias de acessibilidade (ARIA, navegação por teclado)
-- [ ] Deploy automático via Vercel ou Netlify
 
 ---
 
