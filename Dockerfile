@@ -1,4 +1,3 @@
-# Etapa de build
 FROM node:18-alpine AS builder
 
 WORKDIR /app
@@ -10,7 +9,6 @@ COPY . .
 
 RUN npm run build
 
-# Etapa de produção (servidor leve com NGINX)
 FROM nginx:stable-alpine
 
 COPY --from=builder /app/dist /usr/share/nginx/html
