@@ -18,7 +18,12 @@ export const AppCard = ({ app }: Props) => {
   const navigate = useNavigate();
   const { removeApp } = useAppStore();
 
-  const platformColor = app.platform === "iOS" ? "blue" : "green";
+  const platformColor =
+    app.platform === "iOS"
+      ? "blue"
+      : app.platform === "Multiplataforma"
+      ? "default"
+      : "green";
 
   const handleEdit = () => navigate(`/edit/${app.id}`);
   const handleDelete = async () => await removeApp(app.id);

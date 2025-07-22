@@ -69,6 +69,7 @@ export const AppForm = ({
         <Select placeholder="Selecione a plataforma">
           <Select.Option value="Android">Android</Select.Option>
           <Select.Option value="iOS">iOS</Select.Option>
+          <Select.Option value="Multiplataforma">Multiplataforma</Select.Option>
         </Select>
       </Form.Item>
 
