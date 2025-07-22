@@ -89,6 +89,7 @@ src/
 - 🎨 Ant Design (UI moderna e acessível)
 - 📦 Zustand (gestão de estado)
 - 🧠 Arquitetura DDD + SOLID
+- 🧪 Testes E2E (Playwright)
 
 ---
 
@@ -156,21 +157,80 @@ docker compose down
 
 ---
 
-## 🛠️ Scripts Disponíveis
+## 🧪 Testes End-to-End (E2E) com Playwright
 
-| Comando   | Ação                                 |
-| --------- | ------------------------------------ |
-| `dev`     | Inicia o servidor de desenvolvimento |
-| `build`   | Gera a build de produção             |
-| `preview` | Pré-visualiza a build localmente     |
+A aplicação conta com um teste E2E utilizando Playwright para simular o cadastro de um novo aplicativo.
+
+### 📦 Instalação do Playwright
+
+Caso ainda não tenha instalado os navegadores do Playwright:
+
+```bash
+npx playwright install
+```
+
+### ▶️ Como rodar os testes
+
+1. Execute o projeto localmente:
+
+```bash
+npm run dev
+```
+
+2. Em outro terminal, execute os testes:
+
+```bash
+npx playwright test
+```
+
+3. Visualize o relatório dos testes:
+
+```bash
+npx playwright show-report
+```
 
 ---
 
-## 📋 Melhorias Futuras
+## 🛠️ Scripts Disponíveis
 
-- [ ] Testes unitários com `Vitest` ou `Jest`
+| Comando | Ação                                 |
+| ------- | ------------------------------------ |
+| `dev`   | Inicia o servidor de desenvolvimento |
+| `build` | Gera a build de produção             |
+
+---
+
+## 📋 Roadmap de Melhorias
+
+🚀 Funcionalidade gerais
+
 - [ ] Paginação na listagem
 - [ ] Melhorias de acessibilidade (ARIA, navegação por teclado)
+- [ ] Ordenação por nome, categoria ou plataforma
+- [ ] Adicionar busca por nome com debounce
+- [ ] Exibir total de apps cadastrados
+- [ ] Modal de confirmação para exclusão com opção de desfazer
+- [ ] Autenticação fictícia (login/logout com dados mockados)
+
+🧑‍🦯 Acessibilidade
+
+- [ ] Melhorias de acessibilidade com ARIA roles e labels
+- [ ] Suporte completo a navegação por teclado (TAB, ENTER, ESC)
+- [ ] Mensagens de erro acessíveis com aria-live
+
+🎨 UI/UX
+
+- [ ] Dark Mode
+
+🧪 Testes
+
+- [ ] Cobertura com testes unitários (Vitest ou Jest)
+- [ ] Testes de integração para fluxo de cadastro e edição
+
+🧑‍🏫 Experiência do Desenvolvedor
+
+- [ ] Storybook com os principais componentes
+- [ ] Adicionar um gerador de dados mock (ex: Faker.js)
 
 ---
 

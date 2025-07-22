@@ -50,11 +50,14 @@ export const AppForm = ({
       initialValues={initialValues || {}}
     >
       <Form.Item name="name" label="Nome" rules={[{ required: true }]}>
-        <Input placeholder="Nome do app" />
+        <Input placeholder="Nome do app" data-testid="input-nome" />
       </Form.Item>
 
       <Form.Item name="category" label="Categoria" rules={[{ required: true }]}>
-        <Select placeholder="Selecione a categoria">
+        <Select
+          placeholder="Selecione a categoria"
+          data-testid="select-categoria"
+        >
           <Select.Option value="Games">Games</Select.Option>
           <Select.Option value="Finanças">Finanças</Select.Option>
           <Select.Option value="Saúde">Saúde</Select.Option>
@@ -66,7 +69,10 @@ export const AppForm = ({
         label="Plataforma"
         rules={[{ required: true }]}
       >
-        <Select placeholder="Selecione a plataforma">
+        <Select
+          placeholder="Selecione a plataforma"
+          data-testid="select-plataforma"
+        >
           <Select.Option value="Android">Android</Select.Option>
           <Select.Option value="iOS">iOS</Select.Option>
           <Select.Option value="Multiplataforma">Multiplataforma</Select.Option>
@@ -78,7 +84,7 @@ export const AppForm = ({
         label="URL"
         rules={[{ required: true, type: "url" }]}
       >
-        <Input placeholder="https://..." />
+        <Input placeholder="https://..." data-testid="input-url" />
       </Form.Item>
 
       <Button type="primary" htmlType="submit" block loading={loading}>

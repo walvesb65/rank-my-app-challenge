@@ -45,7 +45,7 @@ export const AppCard = ({ app }: Props) => {
     {
       key: "delete",
       icon: <DeleteOutlined />,
-      label: <span style={{ color: "red" }}>Deletar</span>,
+      label: <span>Deletar</span>,
       danger: true,
       onClick: handleDelete,
     },
